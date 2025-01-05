@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 import 'components/Welcome.component.dart';
 import 'components/Cronometer.component.dart';
 import 'components/Publications.component.dart';
