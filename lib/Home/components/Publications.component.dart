@@ -73,7 +73,7 @@ class Publications extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 10, right: 16.0),
+            padding: EdgeInsets.only(top: 10, right: 16.0, bottom: 20),
             child: Align(
               alignment: Alignment.centerRight,
               child: Text(

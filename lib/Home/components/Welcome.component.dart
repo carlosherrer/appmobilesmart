@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HelloWorld extends StatelessWidget {
+class Welcome extends StatelessWidget {
   final String userName;
   final String dateText;
   final String imageUrl;
 
-  const HelloWorld({
+  const Welcome({
     super.key,
     required this.userName,
     required this.dateText,

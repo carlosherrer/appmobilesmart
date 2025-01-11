@@ -61,27 +61,25 @@ class _MainHomeState extends State<MainHome> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.115,
                 width: MediaQuery.of(context).size.width * 0.95,
-                child: HelloWorld(
-                  userName: 'Valeria',
+                child: Welcome(
+                  userName: 'Laura',
                   dateText: formattedDate,
                   imageUrl: '',
                 ),
               ),
               Cronometer(addInterval: _addInterval),
               IntervalCard(intervals: _intervals),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0),
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _postData.length,
                   itemBuilder: (context, index) {
                     final post = _postData[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.7),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: Publications(postData: post),
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      child: Publications(postData: post),
                     );
                   },
                 ),
