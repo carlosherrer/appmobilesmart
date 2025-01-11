@@ -64,11 +64,8 @@ class Publications extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 postData['Imgurl'],
-                fit: BoxFit
-                    .contain, // Ajuste dinámico para adaptarse a la imagen
-                width: double
-                    .infinity, // Permite que la imagen ocupe el ancho completo
-                // Eliminamos el 'height' fijo para permitir que la imagen defina el tamaño
+                fit: BoxFit.contain,
+                width: double.infinity,
               ),
             ),
           ),
