@@ -11,7 +11,6 @@ class Publications extends StatelessWidget {
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -24,16 +23,14 @@ class Publications extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Flexible(
-                  fit: FlexFit
-                      .tight, // Ajuste para ocupar todo el espacio disponible
+                  fit: FlexFit.tight,
                   child: Text(
                     postData['header'],
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
-                    softWrap:
-                        true, // Permite que el texto se ajuste a una nueva línea si es necesario
+                    softWrap: true,
                   ),
                 ),
               ],
@@ -67,8 +64,11 @@ class Publications extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 postData['Imgurl'],
-                fit: BoxFit.cover,
-                width: double.infinity,
+                fit: BoxFit
+                    .contain, // Ajuste dinámico para adaptarse a la imagen
+                width: double
+                    .infinity, // Permite que la imagen ocupe el ancho completo
+                // Eliminamos el 'height' fijo para permitir que la imagen defina el tamaño
               ),
             ),
           ),

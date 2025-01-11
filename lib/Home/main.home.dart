@@ -52,12 +52,10 @@ class _MainHomeState extends State<MainHome> {
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('EEEE, d \'de\' MMMM \'del\' y', 'es_ES')
         .format(DateTime.now());
-    print(DateTime.now());
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Align(
-          alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
@@ -71,15 +69,19 @@ class _MainHomeState extends State<MainHome> {
               ),
               Cronometer(addInterval: _addInterval),
               IntervalCard(intervals: _intervals),
-              Expanded(
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: _postData.length,
                   itemBuilder: (context, index) {
                     final post = _postData[index];
-                    return SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: Publications(postData: post),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 0.7),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        child: Publications(postData: post),
+                      ),
                     );
                   },
                 ),
