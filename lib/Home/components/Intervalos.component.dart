@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class IntervalCard extends StatelessWidget {
-  const IntervalCard({super.key});
+  final List<Map<String, String>> intervals; //Lista de intervalos
+
+  const IntervalCard({super.key, required this.intervals});
 
   @override
   Widget build(BuildContext context) {
@@ -10,43 +13,45 @@ class IntervalCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 245, 243, 243), // Fondo azul oscuro
+        color: const Color.fromARGB(255, 245, 243, 243),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Intervalos",
-                style: TextStyle(
-                  color: Color(0xFF465499),
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                "09:03 - 13:03 | 04 hrs 03 min",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF6EE7B7),
-              shape: BoxShape.circle,
+          const Text(
+            "Intervalos",
+            style: TextStyle(
+              color: Color(0xFF465499),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
-            padding: const EdgeInsets.all(8),
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 24,
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            height: 60,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: intervals.map((interval) {
+                  final start = DateTime.parse(interval['start']!);
+                  final end = DateTime.parse(interval['end']!);
+                  final duration = end.difference(start);
+
+                  final formattedDuration =
+                      '${duration.inHours}:${(duration.inMinutes % 60).toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+
+                  return Text(
+                    "${DateFormat('HH:mm:ss').format(start)} - ${DateFormat('HH:mm:ss').format(end)} | $formattedDuration",
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
           ),
         ],

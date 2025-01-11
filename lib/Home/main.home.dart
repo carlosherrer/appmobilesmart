@@ -14,25 +14,28 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
+  final List<Map<String, String>> _intervals = [];
+
+  void _addInterval(DateTime start, DateTime end) {
+    setState(() {
+      _intervals.add({
+        "start": start.toString(),
+        "end": end.toString(),
+      });
+    });
+  }
+
   final List<Map<String, dynamic>> _postData = [
     {
       "user": {
-        "details": {
-          "url": "https://via.placeholder.com/150",
-          "name": "Jazmín Robles",
-          "date": "2024-12-28"
-        }
+        "details": {"url": "", "name": "Jazmín Robles", "date": "2024-12-28"}
       },
       "header": "¡Recuerda que la Evaluación de desempeño empieza en Octubre!",
       "Imgurl": "https://placehold.in/600x200.png/dark"
     },
     {
       "user": {
-        "details": {
-          "url": "https://via.placeholder.com/150",
-          "name": "Laura Valera",
-          "date": "2024-12-28"
-        }
+        "details": {"url": "", "name": "Laura Valera", "date": "2024-12-28"}
       },
       "header": "¡Fiesta de celebración para fin de año con Materia Gris!",
       "Imgurl": "https://placehold.in/600x200.png/dark"
@@ -58,16 +61,16 @@ class _MainHomeState extends State<MainHome> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.105,
+                height: MediaQuery.of(context).size.height * 0.115,
                 width: MediaQuery.of(context).size.width * 0.95,
                 child: HelloWorld(
                   userName: 'Valeria',
                   dateText: formattedDate,
-                  imageUrl: 'https://via.placeholder.com/150',
+                  imageUrl: '',
                 ),
               ),
-              const Cronometer(),
-              const IntervalCard(),
+              Cronometer(addInterval: _addInterval),
+              IntervalCard(intervals: _intervals),
               Expanded(
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
