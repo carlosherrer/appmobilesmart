@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart'; // Importar la librería
 
 class Publications extends StatelessWidget {
   final Map<String, dynamic> postData;
@@ -69,18 +70,60 @@ class Publications extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 10, right: 16.0, bottom: 20),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                'Ver Detalle',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF465499),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ReactionButton(
+                  initialReaction: Reaction(
+                    icon: Icon(Icons.add_reaction, color: Colors.blue),
+                    value: 'add',
+                  ),
+                  reactions: <Reaction>[
+                    Reaction(
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Icon(Icons.thumb_up, color: Colors.blue),
+                      ),
+                      value: 'Like',
+                    ),
+                    Reaction(
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Icon(Icons.thumb_down, color: Colors.red),
+                      ),
+                      value: 'Dislike',
+                    ),
+                    Reaction(
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Icon(Icons.emoji_emotions, color: Colors.blue),
+                      ),
+                      value: 'happy',
+                    ),
+                    Reaction(
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Icon(Icons.favorite, color: Colors.pink),
+                      ),
+                      value: 'Love',
+                    ),
+                  ],
+                  onReactionChanged: (reaction) {
+                    // Maneja el cambio de reacción aquí
+                  },
                 ),
-              ),
+                const Text(
+                  'Ver Detalle',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF465499),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
